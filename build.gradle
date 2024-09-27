@@ -40,6 +40,9 @@ dependencies {
     implementation 'org.hibernate:hibernate-validator:5.3.6.Final'
     // https://mvnrepository.com/artifact/javax.servlet/jstl
     implementation 'javax.servlet:jstl:1.2'
+    // https://mvnrepository.com/artifact/org.mindrot/jbcrypt
+    implementation 'org.mindrot:jbcrypt:0.4'
+
 
 }
 
