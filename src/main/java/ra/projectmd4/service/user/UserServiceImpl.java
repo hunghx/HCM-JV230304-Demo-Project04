@@ -8,12 +8,16 @@ import ra.projectmd4.exception.AuthenticationException;
 import ra.projectmd4.model.dto.request.FormLogin;
 import ra.projectmd4.model.dto.request.FormRegister;
 import ra.projectmd4.model.dto.response.UserInfo;
+import ra.projectmd4.model.dto.response.UserResponse;
 import ra.projectmd4.model.entity.User;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements IUserService{
@@ -56,5 +60,25 @@ public class UserServiceImpl implements IUserService{
                 .updateAt(new Date())
                 .build();
         userDao.register(user);
+    }
+
+    @Override
+    public List<UserResponse> getListUsers(String key, int page, int size) {
+        return userDao.getListUser(key,page,size).stream().map(UserResponse::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserResponse> searchUsers(String search) {
+        return userDao.searchUser(search).stream().map(UserResponse::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserResponse> paginate(int page, int size) {
+        return userDao.paginate(page,size).stream().map(UserResponse::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public long getTotalElements(String key) {
+        return userDao.getTotalElements(key);
     }
 }

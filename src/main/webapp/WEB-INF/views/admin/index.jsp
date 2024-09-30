@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <body>
 <h1>Chào mừng ${sessionScope.containsKey("userLogin")?sessionScope.get("userLogin").fullName:""} đến trang quản trị</h1>
